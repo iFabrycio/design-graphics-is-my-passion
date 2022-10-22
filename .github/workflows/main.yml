@@ -2,7 +2,7 @@ name: Vercel app deployment
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   Deploy-to-production:
     runs-on: ubuntu-latest
