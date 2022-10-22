@@ -1,0 +1,21 @@
+name: Vercel app deployment
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Deploy-to-production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Instala o CLI do Vercel
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel token
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Constroi o projeto
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy do projeto para o Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
